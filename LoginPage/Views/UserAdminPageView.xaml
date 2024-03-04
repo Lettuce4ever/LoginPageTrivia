@@ -3,7 +3,7 @@
     x:Class="LoginPage.Views.UserAdminPageView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:LoginPage.ViewModels"
+    xmlns:models="clr-namespace:LoginPage.Models"
     xmlns:vm="clr-namespace:LoginPage.ViewModels"
     Title="UserAdminPageView"
     x:DataType="vm:UserAdminPageViewModel">
@@ -15,7 +15,48 @@
                 SelectedItem="{Binding SelectedPlayer}"
                 SelectionMode="Single">
                 <CollectionView.ItemsTemplate x:DataType="models:Player">
-                    <Grid ColumnDefinitions="" />
+                    <Grid
+                        Padding="10"
+                        ColumnDefinitions="auto, auto"
+                        ColumnSpacing="5"
+                        HorizontalOptions="Center"
+                        RowDefinitions="*, *, *"
+                        RowSpacing="5">
+
+                        <Border
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            HeightRequest="80"
+                            StrokeShape="RoundRectangle 40"
+                            StrokeThickness="5"
+                            WidthRequest="80">
+                            <Label
+                                FontSize="32"
+                                HorizontalOptions="Center"
+                                Text="{Binding Name}" />
+                        </Border>
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            FontSize="14"
+                            HorizontalOptions="Center"
+                            Text="{Binding Mail}" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Rank}" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            Text="{Binding Score}" />
+
+
+                    </Grid>
+
                 </CollectionView.ItemsTemplate>
                 <CollectionView.EmptyView>
                     <StackLayout
@@ -30,6 +71,14 @@
 
                     </StackLayout>
                 </CollectionView.EmptyView>
+                <SwipeView>
+                    <SwipeView.LeftItems>
+                        <SwipeItem
+                            Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
+                            CommandParameter="{Binding .}"
+                            Text="Delete" />
+                    </SwipeView.LeftItems>
+                </SwipeView>
             </CollectionView>
         </RefreshView>
     </ScrollView>

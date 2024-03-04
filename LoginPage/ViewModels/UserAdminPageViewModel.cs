@@ -21,6 +21,7 @@ namespace LoginPage.ViewModels
         public bool IsRefreshing { get => IsRefreshing; set => IsRefreshing = value; } //יש מצב שצריך להוסיף on property changed
 
         public ICommand RefreshCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
 
         //צריך להוסיף פעולות
 
@@ -29,6 +30,7 @@ namespace LoginPage.ViewModels
             Players = new ObservableCollection<Player>();
 
             RefreshCommand = new Command(async () => await Refresh());
+            DeleteCommand= new Command((object obj)=>Delete(obj));
         }
 
         private async Task LoadPlayers()
@@ -49,6 +51,14 @@ namespace LoginPage.ViewModels
             IsRefreshing = false;
         }
 
+        private void Delete(object obj)
+        {
+            Player p=obj as Player;
+            if (p != null)
+            {
+                Players.Remove(p);
+            }
+        }
  
 
     }
