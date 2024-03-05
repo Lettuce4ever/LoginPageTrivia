@@ -14,50 +14,62 @@
                 ItemsSource="{Binding Players}"
                 SelectedItem="{Binding SelectedPlayer}"
                 SelectionMode="Single">
-                <CollectionView.ItemsTemplate x:DataType="models:Player">
-                    <Grid
-                        Padding="10"
-                        ColumnDefinitions="auto, auto"
-                        ColumnSpacing="5"
-                        HorizontalOptions="Center"
-                        RowDefinitions="*, *, *"
-                        RowSpacing="5">
 
-                        <Border
-                            Grid.RowSpan="3"
-                            Grid.Column="0"
-                            HeightRequest="80"
-                            StrokeShape="RoundRectangle 40"
-                            StrokeThickness="5"
-                            WidthRequest="80">
-                            <Label
-                                FontSize="32"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Player">
+
+                        <SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItem
+                                    Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
+                                    CommandParameter="{Binding .}"
+                                    Text="Delete" />
+                            </SwipeView.LeftItems>
+                            <Grid
+                                Padding="10"
+                                ColumnDefinitions="auto, auto"
+                                ColumnSpacing="5"
                                 HorizontalOptions="Center"
-                                Text="{Binding Name}" />
-                        </Border>
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="1"
-                            FontSize="14"
-                            HorizontalOptions="Center"
-                            Text="{Binding Mail}" />
-                        <Label
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="{Binding Rank}" />
-                        <Label
-                            Grid.Row="0"
-                            Grid.Column="2"
-                            FontSize="20"
-                            HorizontalOptions="Center"
-                            Text="{Binding Score}" />
+                                RowDefinitions="*, *, *"
+                                RowSpacing="5">
 
 
-                    </Grid>
+                                <Border
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"
+                                    HeightRequest="80"
+                                    StrokeShape="RoundRectangle 40"
+                                    StrokeThickness="5"
+                                    WidthRequest="80">
+                                    <Label
+                                        FontSize="32"
+                                        HorizontalOptions="Center"
+                                        Text="{Binding Name}" />
+                                </Border>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    FontSize="14"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Mail}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Rank}" />
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="2"
+                                    FontSize="20"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Score}" />
 
-                </CollectionView.ItemsTemplate>
+
+                            </Grid>
+                        </SwipeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
                 <CollectionView.EmptyView>
                     <StackLayout
                         Margin="10"
@@ -71,14 +83,6 @@
 
                     </StackLayout>
                 </CollectionView.EmptyView>
-                <SwipeView>
-                    <SwipeView.LeftItems>
-                        <SwipeItem
-                            Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
-                            CommandParameter="{Binding .}"
-                            Text="Delete" />
-                    </SwipeView.LeftItems>
-                </SwipeView>
             </CollectionView>
         </RefreshView>
     </ScrollView>

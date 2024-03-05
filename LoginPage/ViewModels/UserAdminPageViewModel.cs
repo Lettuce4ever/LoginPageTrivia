@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using LoginPage.Service;
 using System.Collections.ObjectModel;
 using LoginPage.Service;
-using Javax.Security.Auth;
+
 using System.Windows.Input;
 
 
@@ -16,9 +16,11 @@ namespace LoginPage.ViewModels
 {
     public class UserAdminPageViewModel : ViewModel
     {
+        private Player selectedPlayer;
+        public Player SelectedPlayer { get => selectedPlayer; set { selectedPlayer = value; OnPropertyChanged(); } }
         public ObservableCollection<Player> Players { get; set; }//אוסף שחקנים
         private bool isRefreshing;
-        public bool IsRefreshing { get => IsRefreshing; set => IsRefreshing = value; } //יש מצב שצריך להוסיף on property changed
+        public bool IsRefreshing { get => IsRefreshing; set { IsRefreshing = value; OnPropertyChanged(); } } 
 
         public ICommand RefreshCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
@@ -30,7 +32,7 @@ namespace LoginPage.ViewModels
             Players = new ObservableCollection<Player>();
 
             RefreshCommand = new Command(async () => await Refresh());
-            DeleteCommand= new Command((object obj)=>Delete(obj));
+            DeleteCommand = new Command(() => Delete());
         }
 
         private async Task LoadPlayers()
@@ -51,13 +53,14 @@ namespace LoginPage.ViewModels
             IsRefreshing = false;
         }
 
-        private void Delete(object obj)
+        private void Delete()
         {
-            Player p=obj as Player;
-            if (p != null)
+            if(SelectedPlayer!= null)
             {
-                Players.Remove(p);
+                Players.Remove(SelectedPlayer);
+                SelectedPlayer = null;
             }
+
         }
  
 
