@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using LoginPage.ViewModels;
 using LoginPage.Service;
+using LoginPage.Models;
 
 namespace LoginPage
 {
@@ -20,11 +21,16 @@ namespace LoginPage
 
             //אד סינגלטון ודברים כאלו
             builder.Services.AddTransient<UserQuestionsPageView>();
-
+            builder.Services.AddTransient<UserAdminPageView>();
             builder.Services.AddTransient<UserQuestionsPageViewModel>();
+            builder.Services.AddTransient<UserAdminPageViewModel>();
+            
 
             builder.Services.AddSingleton<QService>();
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<RankService>();
+            builder.Services.AddSingleton<StatusQService>();
+            builder.Services.AddSingleton<SubjectQService>();
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

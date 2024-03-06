@@ -3,12 +3,12 @@
     x:Class="LoginPage.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:LoginPage"
-    Shell.FlyoutBehavior="Disabled">
+    xmlns:local="clr-namespace:LoginPage.Views"
+    Shell.FlyoutBehavior="Flyout">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Admin Page"
+        ContentTemplate="{DataTemplate local:UserAdminPageView}"
+        Route="UserAdminPage" />
 
 </Shell>

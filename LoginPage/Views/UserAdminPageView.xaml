@@ -44,26 +44,26 @@
                                     <Label
                                         FontSize="32"
                                         HorizontalOptions="Center"
-                                        Text="{Binding Name}" />
+                                        Text="{Binding PlayerName}" />
                                 </Border>
                                 <Label
                                     Grid.Row="0"
                                     Grid.Column="1"
                                     FontSize="14"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Mail}" />
+                                    Text="{Binding PlayerMail}" />
                                 <Label
                                     Grid.Row="1"
                                     Grid.Column="1"
                                     FontSize="20"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Rank}" />
+                                    Text="{Binding Darga.DargaName}" />
                                 <Label
-                                    Grid.Row="0"
-                                    Grid.Column="2"
+                                    Grid.Row="2"
+                                    Grid.Column="1"
                                     FontSize="20"
                                     HorizontalOptions="Center"
-                                    Text="{Binding Score}" />
+                                    Text="{Binding PLayerPoints}" />
 
 
                             </Grid>

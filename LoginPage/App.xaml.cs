@@ -9,7 +9,7 @@ namespace LoginPage
         {
             InitializeComponent();
 
-            MainPage = new LoginPageView();
+            MainPage = new AppShell();
         }
     }
 }

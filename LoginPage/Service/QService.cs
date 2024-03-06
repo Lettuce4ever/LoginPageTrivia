@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Javax.Security.Auth;
 using LoginPage.Models;
-using static Android.Icu.Text.CaseMap;
 
 namespace LoginPage.Service
 {

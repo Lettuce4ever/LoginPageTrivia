@@ -3,10 +3,10 @@ using LoginPage.ViewModels;
 
 public partial class UserAdminPageView : ContentPage
 {
-	public UserAdminPageView()
+	public UserAdminPageView(UserAdminPageViewModel vm)
 	{
 		InitializeComponent();
-		this.BindingContext = new UserAdminPageViewModel();
+		this.BindingContext = vm;
 
 	}
 }
