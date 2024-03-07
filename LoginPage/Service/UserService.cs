@@ -15,6 +15,10 @@ namespace LoginPage.Service
         
      
         public List<Player> playersList { get; set; }
+        public  List<Player> GetPlayers()
+        {
+            return playersList;
+        }
         public UserService()
         {
             this.playersList = new List<Player>();

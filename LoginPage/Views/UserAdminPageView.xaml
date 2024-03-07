@@ -8,82 +8,100 @@
     Title="UserAdminPageView"
     x:DataType="vm:UserAdminPageViewModel">
     <ScrollView Margin="10">
-        <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
-            <CollectionView
-                x:Name="colview"
-                ItemsSource="{Binding Players}"
-                SelectedItem="{Binding SelectedPlayer}"
-                SelectionMode="Single">
 
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Player">
+        <StackLayout>
 
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItem
-                                    Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
-                                    CommandParameter="{Binding .}"
-                                    Text="Delete" />
-                            </SwipeView.LeftItems>
-                            <Grid
-                                Padding="10"
-                                ColumnDefinitions="auto, auto"
-                                ColumnSpacing="5"
-                                HorizontalOptions="Center"
-                                RowDefinitions="*, *, *"
-                                RowSpacing="5">
+            <Border Background="BlanchedAlmond">
+                <Picker
+                    x:Name="Picker"
+                    Title="Select filter"
+                    HorizontalOptions="Center"
+                    ItemDisplayBinding="{Binding DargaName}"
+                    ItemsSource="{Binding Dargas}"
+                    SelectedIndex="{Binding SelectedIndex}"
+                    SelectedItem="{Binding SelectedDarga}" />
+            </Border>
+            <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
+                <CollectionView
+                    x:Name="colview"
+                    ItemsSource="{Binding Players}"
+                    SelectedItem="{Binding SelectedPlayer}"
+                    SelectionMode="Single">
 
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Player">
 
-                                <Border
-                                    Grid.RowSpan="3"
-                                    Grid.Column="0"
-                                    HeightRequest="80"
-                                    StrokeShape="RoundRectangle 40"
-                                    StrokeThickness="5"
-                                    WidthRequest="80">
-                                    <Label
-                                        FontSize="32"
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Delete" />
+                                </SwipeView.LeftItems>
+                                <Border Stroke="MediumVioletRed">
+                                    <Grid
+                                        Padding="10"
+                                        ColumnDefinitions="auto, auto"
+                                        ColumnSpacing="5"
                                         HorizontalOptions="Center"
-                                        Text="{Binding PlayerName}" />
+                                        RowDefinitions="*, *, *"
+                                        RowSpacing="5">
+
+
+                                        <Border
+                                            Grid.RowSpan="3"
+                                            Grid.Column="0"
+                                            HeightRequest="160"
+                                            StrokeShape="RoundRectangle 80"
+                                            StrokeThickness="5"
+                                            WidthRequest="160">
+                                            <Label
+                                                FontSize="32"
+                                                HorizontalOptions="Center"
+                                                Text="{Binding PlayerName}"
+                                                VerticalOptions="Center" />
+                                        </Border>
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding PlayerMail}" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            FontSize="20"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding Darga.DargaName}" />
+                                        <Label
+                                            Grid.Row="2"
+                                            Grid.Column="1"
+                                            FontSize="20"
+                                            HorizontalOptions="Center"
+                                            Text="{Binding PLayerPoints}" />
+
+
+                                    </Grid>
                                 </Border>
-                                <Label
-                                    Grid.Row="0"
-                                    Grid.Column="1"
-                                    FontSize="14"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding PlayerMail}" />
-                                <Label
-                                    Grid.Row="1"
-                                    Grid.Column="1"
-                                    FontSize="20"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding Darga.DargaName}" />
-                                <Label
-                                    Grid.Row="2"
-                                    Grid.Column="1"
-                                    FontSize="20"
-                                    HorizontalOptions="Center"
-                                    Text="{Binding PLayerPoints}" />
-
-
-                            </Grid>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-                <CollectionView.EmptyView>
-                    <StackLayout
-                        Margin="10"
-                        Background="LightBlue"
-                        HeightRequest="180"
-                        VerticalOptions="Start">
-                        <Image
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <StackLayout
+                            Margin="10"
+                            Background="LightBlue"
                             HeightRequest="180"
-                            Source="no_players.jpg"
-                            WidthRequest="180" />
+                            VerticalOptions="Start">
+                            <Image
+                                HeightRequest="180"
+                                Source="no_players.jpg"
+                                WidthRequest="180" />
 
-                    </StackLayout>
-                </CollectionView.EmptyView>
-            </CollectionView>
-        </RefreshView>
+                        </StackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+
     </ScrollView>
 </ContentPage>
