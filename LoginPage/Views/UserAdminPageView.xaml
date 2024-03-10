@@ -10,6 +10,23 @@
     <ScrollView Margin="10">
 
         <StackLayout>
+            <Button
+                Text="Load Players"
+                Command="{Binding LoadPlayersCommand}"/>
+            <Button
+                Text="Clear Players"
+                Command="{Binding ClearCommand}"
+                />
+
+            <Label HorizontalOptions="Center" Text="Add Player"></Label>
+
+            <Entry ToolTipProperties.Text="A username like Gal" WidthRequest="250" VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding Username}" Placeholder="Enter Username" PlaceholderColor="Red"></Entry>
+            <Entry ToolTipProperties.Text="A password like Gal031206" WidthRequest="250" VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding Password}" Placeholder="Enter Password" PlaceholderColor="Red"></Entry>
+            <Entry ToolTipProperties.Text="A mail like galkluger@gmail.com" WidthRequest="250" VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding Mail}" Placeholder="Enter Mail" PlaceholderColor="Red"></Entry>
+
+            <Button Text="Add Player" Command="{Binding AddPlayerCommand}"/>
+            
+
 
             <Border Background="BlanchedAlmond">
                 <Picker
@@ -20,6 +37,7 @@
                     ItemsSource="{Binding Dargas}"
                     SelectedIndex="{Binding SelectedIndex}"
                     SelectedItem="{Binding SelectedDarga}" />
+                <!--לא עובד עקב באג 8870-->
             </Border>
             <RefreshView Command="{Binding RefreshCommand}" IsRefreshing="{Binding IsRefreshing}">
                 <CollectionView
@@ -37,6 +55,10 @@
                                         Command="{Binding Source={x:Reference colview}, Path=BindingContext.DeleteCommand}"
                                         CommandParameter="{Binding .}"
                                         Text="Delete" />
+                                    <SwipeItem
+                                        Command="{Binding Source={x:Reference colview}, Path=BindingContext.ResetPointsCommand}"
+                                        CommandParameter="{Binding .}"
+                                        Text="Reset Points" />
                                 </SwipeView.LeftItems>
                                 <Border Stroke="MediumVioletRed">
                                     <Grid
@@ -45,22 +67,18 @@
                                         ColumnSpacing="5"
                                         HorizontalOptions="Center"
                                         RowDefinitions="*, *, *"
-                                        RowSpacing="5">
+                                        RowSpacing="5"
+                                        Background="Transparent">
 
-
-                                        <Border
+                                        <Label
                                             Grid.RowSpan="3"
                                             Grid.Column="0"
                                             HeightRequest="160"
-                                            StrokeShape="RoundRectangle 80"
-                                            StrokeThickness="5"
-                                            WidthRequest="160">
-                                            <Label
+                                            WidthRequest="160"
                                                 FontSize="32"
                                                 HorizontalOptions="Center"
                                                 Text="{Binding PlayerName}"
                                                 VerticalOptions="Center" />
-                                        </Border>
                                         <Label
                                             Grid.Row="0"
                                             Grid.Column="1"

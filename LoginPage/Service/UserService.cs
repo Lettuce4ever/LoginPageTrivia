@@ -15,9 +15,15 @@ namespace LoginPage.Service
         
      
         public List<Player> playersList { get; set; }
+        static int Index = 4;
         public  List<Player> GetPlayers()
         {
             return playersList;
+        }
+        public int GetIndexForNewPlayer()
+        {
+            Index++;
+            return Index;
         }
         public UserService()
         {
